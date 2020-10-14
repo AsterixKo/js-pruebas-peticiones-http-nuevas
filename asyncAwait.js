@@ -3,10 +3,10 @@
 //          resultado de una promesa u operación asíncrona
 
 const helloPromise = () => {
-    return new Promise((resolve, reject)=>{
-        if(true){
-            setTimeout(()=>resolve('Hola'), 3000);
-        }else{
+    return new Promise((resolve, reject) => {
+        if (true) {
+            setTimeout(() => resolve('Hola'), 3000);
+        } else {
             reject('No hay saludo');
         }
     });
@@ -14,15 +14,20 @@ const helloPromise = () => {
 
 //forma tradiciona apilando llamadas.
 helloPromise()
-.then()
-.then()
-.then()
-.catch();
+    .then()
+    .then()
+    .then()
+    .catch();
 
 //Con async await
-const saludar = async() => {//con async le indicamos que va ha ser asincrona
-    const resultadoDelSaludo = await helloPromise();//el await hace que espere
-    console.log(resultadoDelSaludo);
+const saludar = async () => { //con async le indicamos que va ha ser asincrona
+    try {
+        const resultadoDelSaludo = await helloPromise(); //el await hace que espere
+        console.log(resultadoDelSaludo);
+    } catch (error) {
+        console.log(error);
+    }
+
 };
 
 saludar();
